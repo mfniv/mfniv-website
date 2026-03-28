@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #111;
+      color: white;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Image Page</h1>
+
+  <div class="gallery">
+    <img src="images/batched.jpg" alt="Image 1" />
+    <img src="images/craft.jpg" alt="Image 2" />
+    <img src="images/image3.jpg" alt="Image 3" />
+  </div>
+</body>
+</html>
