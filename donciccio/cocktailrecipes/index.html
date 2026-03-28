@@ -3,42 +3,207 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Page</title>
+  <title>Bar Sirenis | Classics Poster</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 24px;
-      background: #111;
-      color: white;
+    :root {
+      --bg: #f7f3eb;
+      --paper: #fffdf8;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d6cfc2;
+      --accent: #a61b1b;
+      --accent-2: #12305a;
+      --highlight: #b45309;
     }
-
-    h1 {
-      margin-bottom: 24px;
-    }
-
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .gallery img {
-      width: 100%;
-      max-width: 900px;
-      height: auto;
-      border-radius: 12px;
-      display: block;
-    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: var(--bg); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+    .page { max-width: 1100px; margin: 0 auto; }
+    .hero { background: var(--paper); border: 1px solid var(--line); padding: 24px; border-radius: 16px; margin-bottom: 20px; }
+    .image-row { display: flex; gap: 12px; margin-bottom: 16px; }
+    .image-row img { width: 100%; max-height: 120px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
+    h1 { margin: 0 0 6px 0; color: var(--accent-2); }
+    .category-title { color: var(--accent); margin: 16px 0 10px 0; text-transform: uppercase; }
+    .drink-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .drink-name { font-weight: bold; margin-bottom: 6px; font-size: 1.1rem; }
+    .meta { font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; }
+    .highlight { color: var(--highlight); font-weight: bold; }
+    ol { margin-left: 18px; }
   </style>
 </head>
 <body>
-  <h1>My Image Page</h1>
+  <div class="page">
 
-  <div class="gallery">
-    <img src="images/batched.jpg" alt="Image 1" />
-    <img src="images/craft.jpg" alt="Image 2" />
-    <img src="images/image3.jpg" alt="Image 3" />
+    <section class="hero">
+      <div class="image-row">
+        <img src="craft.jpeg" alt="Craft Cocktails Reference" />
+        <img src="batched.jpeg" alt="Batched Cocktails Reference" />
+        <img src="other.jpg" alt="Other Cocktails Reference" />
+      </div>
+      <h1>Bar Sirenis</h1>
+      <p>Classics — Bartender Build Reference</p>
+    </section>
+
+    <h2 class="category-title">Pre-Batched Classics</h2>
+    <div class="drink-grid">
+
+      <div class="card">
+        <div class="drink-name">Negroni</div>
+        <div class="meta">🍸 Rocks | 🍋 Lemon Peel | Vessel: In Glass</div>
+        <ol>
+          <li>🧊 Add large rock ice (1 cube)</li>
+          <li>🥃 Pour <span class="highlight">Negroni Batch</span> (2.5–3.0 oz)</li>
+          <li>🥄 Brief stir</li>
+          <li>💨 Express lemon peel (1)</li>
+          <li>🍋 Place or discard peel</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Manhattan</div>
+        <div class="meta">🍸 Coupe | 🍊 Orange Peel | Vessel: Mixing Glass</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Manhattan Batch</span> (2.5–3.0 oz)</li>
+          <li>🧊 Add ice (if stirring)</li>
+          <li>🥄 Stir briefly</li>
+          <li>🔽 Strain into coupe</li>
+          <li>💨 Express orange peel (1)</li>
+          <li>🍊 Finish garnish</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Old Fashioned</div>
+        <div class="meta">🍸 Rocks | 🍊 Orange Peel | Vessel: In Glass</div>
+        <ol>
+          <li>🧊 Add large rock ice (1 cube)</li>
+          <li>🥃 Pour <span class="highlight">Old Fashioned Batch</span> (2.25–2.75 oz)</li>
+          <li>🥄 Brief stir</li>
+          <li>💨 Express orange peel (1)</li>
+          <li>🍊 Place peel in glass</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <h2 class="category-title">Non-Batched Classics</h2>
+    <div class="drink-grid">
+
+      <div class="card">
+        <div class="drink-name">Americano</div>
+        <div class="meta">🍸 Tall | 🍊 Orange Wheel | Vessel: In Glass</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Cinque</span> (1.0 oz)</li>
+          <li>🥃 Add Vermouth Bianco (1.0 oz)</li>
+          <li>🧊 Add ice (fill)</li>
+          <li>⬆️ Top with soda</li>
+          <li>🍊 Add orange wheel (1)</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Boulevardier</div>
+        <div class="meta">🍸 Coupe | 🍊 Orange Peel | Vessel: Mixing Glass</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Bourbon</span> (0.75 oz)</li>
+          <li>🥃 Add Donnarosa (0.75 oz)</li>
+          <li>🥃 Add Sweet Vermouth (1.0 oz)</li>
+          <li>🧊 Add ice (fill)</li>
+          <li>🥄 Stir</li>
+          <li>🔽 Strain into coupe</li>
+          <li>💨 Express orange peel (1)</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Spritz</div>
+        <div class="meta">🍸 Wine Glass | 🍊 Orange Wheel | Vessel: In Glass</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Ambrosia</span> (1.5 oz)</li>
+          <li>🧊 Add ice (fill)</li>
+          <li>🥃 Add Prosecco (2.0 oz)</li>
+          <li>⬆️ Top with soda (splash)</li>
+          <li>🍊 Add orange wheel (1)</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <h2 class="category-title">Bar Sirenis Craft Cocktails</h2>
+    <div class="drink-grid">
+
+      <div class="card">
+        <div class="drink-name">Aviatore</div>
+        <div class="meta">🍸 Coupe | No garnish specified | Vessel: Shaker</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Karkade</span> (0.75 oz)</li>
+          <li>🥃 Add Gin (0.75 oz)</li>
+          <li>🥃 Add Maraschino (0.75 oz)</li>
+          <li>🥃 Add Lemon Juice (0.75 oz)</li>
+          <li>🧊 Add ice</li>
+          <li>🤝 Shake</li>
+          <li>🔽 Strain into coupe</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Peppino</div>
+        <div class="meta">🍸 Coupe | No garnish specified | Vessel: Shaker</div>
+        <ol>
+          <li>🥃 Add Gin (0.75 oz)</li>
+          <li>🥃 Add <span class="highlight">Limoncello</span> (1.5 oz)</li>
+          <li>🥃 Add Lemon (0.75 oz)</li>
+          <li>🧊 Add ice</li>
+          <li>🤝 Shake</li>
+          <li>🔽 Strain into coupe</li>
+          <li>⬆️ Top with Prosecco (splash)</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Vesper</div>
+        <div class="meta">🍸 Coupe | 🍋 Lemon Twist | Vessel: Mixing Glass or Shaker</div>
+        <ol>
+          <li>🥃 Add Gin (2.0 oz)</li>
+          <li>🥃 Add Vodka (1.0 oz)</li>
+          <li>🥃 Add <span class="highlight">Finocchietto</span> (0.5 oz)</li>
+          <li>🧊 Add ice</li>
+          <li>🥄 Stir or 🤝 shake per house standard</li>
+          <li>🔽 Strain into coupe</li>
+          <li>🍋 Add lemon twist (1)</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Espresso Martini</div>
+        <div class="meta">🍸 Coupe | 🍊 Orange Peel | Vessel: Shaker</div>
+        <ol>
+          <li>🥃 Add <span class="highlight">Affogato</span> (2.0 oz)</li>
+          <li>🥃 Add Vodka (1.0 oz)</li>
+          <li>🥃 Add Vanilla (optional / house decision)</li>
+          <li>🧊 Add ice</li>
+          <li>🤝 Shake hard</li>
+          <li>🔽 Strain into coupe</li>
+          <li>💨 Express orange peel (1)</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="drink-name">Trip to Oaxaca</div>
+        <div class="meta">🍸 Rocks | No garnish specified | Vessel: Mixing Glass</div>
+        <ol>
+          <li>🥃 Add Mezcal (2.0 oz)</li>
+          <li>🥃 Add <span class="highlight">Cioccolato</span> (2.0 oz)</li>
+          <li>🥃 Add American Bitters (dash amount not specified)</li>
+          <li>🧊 Add ice</li>
+          <li>🥄 Stir</li>
+          <li>🧊 Add large rock ice (1 cube) to rocks glass</li>
+          <li>🔽 Strain over fresh rock ice</li>
+        </ol>
+      </div>
+
+    </div>
+
   </div>
 </body>
 </html>
