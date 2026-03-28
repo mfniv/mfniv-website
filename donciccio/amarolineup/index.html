@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don Ciccio Tasting Smart Cards</title>
+  <style>
+    :root {
+      --bg: #f5f1ea;
+      --paper: #fffdf8;
+      --ink: #1f1b18;
+      --muted: #6d6258;
+      --accent: #7d1f24;
+      --line: #d9cfc3;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #efe8dc 0%, #f8f4ed 100%);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+    }
+
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(248, 244, 237, 0.92);
+      border: 1px solid rgba(217, 207, 195, 0.9);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .jump {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
+    }
+
+    .jump a {
+      text-decoration: none;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .cards {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      scroll-margin-top: 190px;
+    }
+
+    .card-head {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffefb 0%, #f8f2ea 100%);
+    }
+
+    .order {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .title-wrap h2 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .meta {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta span {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .anchor {
+      margin-top: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .card-body {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+      min-height: 100%;
+    }
+
+    .label {
+      margin: 0 0 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .box p, .box ul {
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .box ul {
+      padding-left: 18px;
+    }
+
+    .box li + li { margin-top: 6px; }
+
+    .long {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .foot {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .callout {
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(125, 31, 36, 0.06);
+      border: 1px solid rgba(125, 31, 36, 0.16);
+      color: #4f1d21;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .app { padding: 14px 10px 72px; }
+      .hero { border-radius: 16px; padding: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      .card-head, .card-body { padding: 14px; }
+      .card { scroll-margin-top: 240px; }
+      .jump { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">Don Ciccio & Figli</div>
+          <h1>Tasting Smart Cards</h1>
+          <p class="sub">Vertical scroll layout for live tasting support. Ordered to match your lineup. Each card gives the quick story: category, palate anchor, core notes, usage, likely substitutions, and simple audience-facing language.</p>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="pill">17 pours</div>
+        <div class="pill">Service order locked</div>
+        <div class="pill">Built for live reference</div>
+        <div class="pill">Use cues + substitution cues</div>
+      </div>
+      <div class="jump">
+        <a href="#card-1">1. Ambrosia</a>
+        <a href="#card-2">2. Amaro delle Sirene</a>
+        <a href="#card-3">3. Donna Rosa Rabarbaro</a>
+        <a href="#card-4">4. Karkadé</a>
+        <a href="#card-5">5. Cerasum</a>
+        <a href="#card-6">6. Carciofo</a>
+        <a href="#card-7">7. Luna</a>
+        <a href="#card-8">8. Ferro-Kina</a>
+        <a href="#card-9">9. Cinque Bianco</a>
+        <a href="#card-10">10. Amaro Don Fernet</a>
+        <a href="#card-11">11. Limoncello</a>
+        <a href="#card-12">12. Mandarinetto</a>
+        <a href="#card-13">13. Fico d'India</a>
+        <a href="#card-14">14. Finocchietto</a>
+        <a href="#card-15">15. Nocino</a>
+        <a href="#card-16">16. Cioccolato</a>
+        <a href="#card-17">17. Concerto</a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <article class="card" id="card-1">
+        <div class="card-head">
+          <div class="order">1</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Ambrosia</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1908</span>
+                <span>Opener</span>
+              </div>
+              <div class="anchor">Anchor: turmeric citrus spritz</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Blood orange</li><li>Turmeric</li><li>Cantaloupe</li><li>Carrot</li><li>Bittersweet botanicals</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Bright, refreshing, lightly bittersweet, and easy to place for guests who are new to aperitivi.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Spritzes first. Also strong as a low-friction aperitivo pour for guests who want something citrusy and approachable.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A softer, more nuanced stand-in for Aperol in a spritz build when you want more botanical complexity.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Start the tasting here. This is your easy on-ramp: citrus-led, refreshingly bittersweet, and built for spritz drinking.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-2">
+        <div class="card-head">
+          <div class="order">2</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Amaro delle Sirene</h2>
+              <div class="meta">
+                <span>Amaro</span>
+                <span>1931</span>
+                <span>Barrel-aged</span>
+              </div>
+              <div class="anchor">Anchor: oak-aged herbal depth</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Eucalyptus</li><li>Ripe fruit</li><li>Licorice</li><li>Gentian</li><li>Chicory</li><li>Chamomile</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Round, mature, and layered, with a real barrel-aged amaro presence.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Sipping neat, amaro flights, and higher-complexity stirred drinks where oak and herb depth matter.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>Think of it as a house answer to bigger traditional amari with oak influence. It can sub for other deep, sipping-style amari when you want less brute force and more elegance.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>This is the flagship amaro move in the lineup: barrel-aged, layered, and serious without getting punishing.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-3">
+        <div class="card-head">
+          <div class="order">3</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Donna Rosa Rabarbaro</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1896</span>
+                <span>Floral</span>
+              </div>
+              <div class="anchor">Anchor: elegant rhubarb rose</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Rhubarb root</li><li>Rose petals</li><li>Vanilla</li><li>Herbal bitterness</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Aromatic, lifted, and polished. Floral without turning perfumey.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Aperitivo pours, floral highballs, and cocktails where you want rhubarb structure instead of blunt citrus bitterness.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more elegant alternative to rhubarb-forward aperitifs or softer red bitter components when you want floral detail.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Present this as the romantic bottle in the lineup: rhubarb backbone, rose lift, and enough bitterness to stay serious.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-4">
+        <div class="card-head">
+          <div class="order">4</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Karkadé</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1899</span>
+                <span>Hibiscus-led</span>
+              </div>
+              <div class="anchor">Anchor: hibiscus tea with bite</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Hibiscus</li><li>Tart floral fruit</li><li>Medium bitterness</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Fragrant, bright, and more floral than most guests expect from a bitter aperitivo.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Tiki-adjacent drinks, gin cocktails, aperitivo builds, and anything that benefits from tart floral lift.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A floral-leaning substitute for red bitters when Campari reads too heavy or too blunt.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>This is your bridge for guests who like floral tea, berry tartness, or gin drinks but are unsure about amaro.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-5">
+        <div class="card-head">
+          <div class="order">5</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Cerasum</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1906</span>
+                <span>Cherry-led</span>
+              </div>
+              <div class="anchor">Anchor: tart cherry amaro</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Three kinds of cherry</li><li>Sakura blossom</li><li>Herbal bitterness</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Bright, tart, and structured enough to work in serious cocktails.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Spritzes, Negronis, tiki drinks, and refreshing fruit-forward builds.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more bitter, more botanical swap for cherry liqueurs when you want less candy and more architecture.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Frame it as cherry with backbone. It is not dessert cherry. It is cocktail cherry with a bitter spine.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-6">
+        <div class="card-head">
+          <div class="order">6</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Carciofo</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1911</span>
+                <span>Savory</span>
+              </div>
+              <div class="anchor">Anchor: savory artichoke Negroni</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Artichoke</li><li>Cardoon</li><li>Grapefruit</li><li>Earthy herbs</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Vegetal, structured, and savory in a way that reads adult immediately.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Rum Negronis, Americanos, and savory bitter cocktails.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A house alternative to Cynar-style artichoke bitterness, especially when you want something brighter and more citrus-linked.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Sell this to guests who like savory cocktails, vegetal bitterness, or Cynar-adjacent profiles.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-7">
+        <div class="card-head">
+          <div class="order">7</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Luna</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1894</span>
+                <span>Bitter-forward</span>
+              </div>
+              <div class="anchor">Anchor: dark red Negroni engine</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Grapefruit</li><li>Prickly pear</li><li>Gentian</li><li>Chicory</li><li>Rhubarb</li><li>Vanilla</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Dark red, multi-layered, and more bitter than the earlier aperitivi in the flight.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Negroni-inspired cocktails, Boulevardiers, and other bitter-driven stirred drinks.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more nuanced stand-in for Campari or other robust red bitters when you want more layers than just orange-and-bitter.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>If someone in the group says they like bitter cocktails, this is where you point and smile.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-8">
+        <div class="card-head">
+          <div class="order">8</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Amaro Tonico Ferro-Kina</h2>
+              <div class="meta">
+                <span>Amaro</span>
+                <span>1967</span>
+                <span>Quinine / Tonico</span>
+              </div>
+              <div class="anchor">Anchor: iron-toned quinine</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Bitter lemon</li><li>China calisaya / cinchona</li><li>Gentian</li><li>Iron citrate</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Assertive, medicinal in the best sense, and tonic-like with a mineral edge.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Sipping for bitter drinkers, quinine-forward cocktails, and any build where tonic bitterness is the point rather than an accessory.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more complex substitute for quinquina, chinato-adjacent components, or bitter tonic elements in cocktails.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Tell guests this is what happens when tonic bitterness grows up and gets serious.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-9">
+        <div class="card-head">
+          <div class="order">9</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Cinque Bianco</h2>
+              <div class="meta">
+                <span>Aperitivo</span>
+                <span>1929</span>
+                <span>Vegan friendly</span>
+              </div>
+              <div class="anchor">Anchor: bitter orange + gentian</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Bitter orange</li><li>Gentian lutea</li><li>Herbal bitterness</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Clean, firm, and classic. A bitter aperitivo without extra ornament.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Spritzes, Negronis, and straightforward bitter aperitivo cocktails.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A white or lighter-color alternative to common bitter aperitivo components when you want gentian and orange without a darker red profile.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Use this as the stripped-down bitter card: citrus, gentian, structure, done right.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-10">
+        <div class="card-head">
+          <div class="order">10</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Amaro Don Fernet</h2>
+              <div class="meta">
+                <span>Amaro</span>
+                <span>1915</span>
+                <span>Fernet style</span>
+              </div>
+              <div class="anchor">Anchor: mint + dark chocolate punch</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Fresh mint</li><li>Dark chocolate</li><li>Ginger</li><li>Saffron</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Sharp, bitter, cooling, and long on the finish. Barrel-aged and built with intent.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Shots for Fernet people, stirred amaro cocktails, and riffs where minty bitterness needs more detail than standard Fernet.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A direct conversation piece against Fernet-Branca style pours, but with no glycerin or menthol and a more custom house identity.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Do not oversell this as generic Fernet. It belongs in that family, but it has its own fingerprint.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-11">
+        <div class="card-head">
+          <div class="order">11</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Limoncello</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1947</span>
+                <span>Citrus</span>
+              </div>
+              <div class="anchor">Anchor: Amalfi lemon oil</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Fresh lemon peel</li><li>Sweet citrus</li><li>Zesty finish</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Bright, full, and natural. Lemon peel first, not candy first.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Sipping chilled, citrus cocktails, spritz riffs, and dessert-adjacent drinks.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A cleaner, fresher substitute for commercial limoncello or sweet citrus liqueurs when you want real peel character.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Keep the message simple: fresh lemons, no coloring, no stabilizers, and a real lemon finish.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-12">
+        <div class="card-head">
+          <div class="order">12</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Mandarinetto</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1948</span>
+                <span>Citrus</span>
+              </div>
+              <div class="anchor">Anchor: fresh mandarin peel snap</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Mandarin orange</li><li>Tangelo</li><li>Citrus oil</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Aromatic, juicy, and brighter than standard orange liqueur expectations.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Margarita-adjacent riffs, citrus cocktails, and any build where orange liqueur should taste fresher.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>Triple sec, curaçao, or many standard orange liqueurs when you want a fresher natural citrus profile.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>This is the easiest practical comparison in the whole lineup: tell people it can step into the orange-liqueur lane, but with more freshness and less generic sweetness.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-13">
+        <div class="card-head">
+          <div class="order">13</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Fico d'India</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1954</span>
+                <span>Fruit</span>
+              </div>
+              <div class="anchor">Anchor: honeyed prickly pear</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Prickly pear</li><li>Kiwi-like fruit</li><li>Honeyed sweetness</li><li>Crisp finish</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Exclusive, aromatic, and fruit-led without feeling sticky.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Mezcal cocktails, pisco drinks, prosecco builds, and fruit-driven aperitivo serves.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more distinctive swap for prickly pear syrups or fruit liqueurs when you want real fruit character plus more elegance.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Guests remember this one because the fruit is unusual. Lean into that and keep the comparison simple: prickly pear, kiwi-like, honeyed, crisp.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-14">
+        <div class="card-head">
+          <div class="order">14</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Finocchietto</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1954</span>
+                <span>Digestif</span>
+              </div>
+              <div class="anchor">Anchor: fresh fennel field</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Anise</li><li>Fresh fennel</li><li>Vegetal herbs</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Clean, savory, and palate-refreshing. More kitchen herb than candy anise.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Digestif pours, savory cocktails, and culinary-minded drinks.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>An herb-fresh alternative to anise liqueurs such as sambuca, anisette, or fennel-driven digestifs when you want less sugar and more freshness.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>This one makes sense to cooks immediately. Frame it as a savory digestif, not a candy-shop anise bomb.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-15">
+        <div class="card-head">
+          <div class="order">15</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Nocino</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1933</span>
+                <span>Walnut digestif</span>
+              </div>
+              <div class="anchor">Anchor: green walnut spice cabinet</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Green walnuts</li><li>Baking spice</li><li>Vanilla</li><li>Ripe berries</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Dense, semi-sweet, and long on the finish. It reads like holiday memory in liquid form.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Digestif pours, after-dinner service, spirit-forward stirred drinks, and autumnal cocktails.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>Classic nocino, walnut liqueur, or certain darker dessert-adjacent modifiers when you want more spice and depth.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Use the San Giovanni harvest story if the group likes tradition. Otherwise just say green walnut, baking spice, and long finish.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-16">
+        <div class="card-head">
+          <div class="order">16</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Cioccolato</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1971</span>
+                <span>Cocoa</span>
+              </div>
+              <div class="anchor">Anchor: bittersweet chocolate orange</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Three kinds of chocolate</li><li>Bitter orange</li><li>Vanilla</li><li>Spice</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Velvety, rich, and dessert-like, but still useful in cocktails rather than only after-dinner sipping.</p></div>
+            <div class="box"><div class="label">Used In</div><p>Bourbon cocktails, dessert drinks, and orange-chocolate riffs.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A stronger, more layered substitute for chocolate liqueurs or crème de cacao styles when you want bitter orange and spice built in.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>If someone likes bourbon and dessert flavors, this is an easy yes.</p></div>
+        </div>
+      </article>
+
+      <article class="card" id="card-17">
+        <div class="card-head">
+          <div class="order">17</div>
+          <div class="title-row">
+            <div class="title-wrap">
+              <h2>Concerto</h2>
+              <div class="meta">
+                <span>Liqueur</span>
+                <span>1696</span>
+                <span>Coffee / herbal</span>
+              </div>
+              <div class="anchor">Anchor: monastery mocha</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid">
+            <div class="box"><div class="label">Core Notes</div><ul><li>Roasted barley</li><li>Espresso coffee</li><li>Licorice</li><li>Dark chocolate</li><li>Vanilla</li></ul></div>
+            <div class="box"><div class="label">What It Feels Like</div><p>Warming, gently sweet, and old-world in a way guests immediately remember.</p></div>
+            <div class="box"><div class="label">Used In</div><p>After-dinner pours, coffee cocktails, dessert service, and any drink that wants darker roasted depth.</p></div>
+            <div class="box"><div class="label">What It Can Replace</div><p>A more herbal, more historically textured alternative to coffee liqueur when you want roasted grain and botanicals alongside the coffee note.</p></div>
+          </div>
+          <div class="long"><div class="label">Talk Track</div><p>Strong closer. It gives you coffee, dark chocolate, roasted grain, and a monk-story frame people actually remember.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <div class="callout" style="margin-top: 20px;">
+      Best live-use move: keep each card tight while speaking. Hit category, anchor, two notes, one use case, then move on. Do not dump the full paragraph unless the room asks for history.
+    </div>
+  </main>
+</body>
+</html>
