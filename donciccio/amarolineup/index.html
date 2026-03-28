@@ -12,7 +12,7 @@
       --muted: #6d6258;
       --accent: #7d1f24;
       --line: #d9cfc3;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       --radius: 18px;
     }
 
@@ -27,9 +27,7 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      min-height: 100vh;
-    }
+    body { min-height: 100vh; }
 
     .app {
       max-width: 900px;
@@ -40,22 +38,14 @@
     .hero {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       backdrop-filter: blur(10px);
-      background: rgba(248, 244, 237, 0.92);
-      border: 1px solid rgba(217, 207, 195, 0.9);
+      background: rgba(248, 244, 237, 0.96);
+      border: 1px solid rgba(217, 207, 195, 0.95);
       border-radius: 20px;
       padding: 16px;
       box-shadow: var(--shadow);
       margin-bottom: 18px;
-    }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      flex-wrap: wrap;
     }
 
     .eyebrow {
@@ -82,39 +72,28 @@
       max-width: 680px;
     }
 
-    .legend {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
-      background: var(--paper);
-      border-radius: 999px;
-      padding: 7px 11px;
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .jump {
+    .quick-nav {
       margin-top: 14px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 8px;
     }
 
-    .jump a {
-      text-decoration: none;
-      color: var(--ink);
-      background: #fff;
-      border: 1px solid var(--line);
+    .quick-nav label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .quick-nav select {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
       border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 13px;
-      line-height: 1.35;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
       box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
 
@@ -129,7 +108,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
-      scroll-margin-top: 190px;
+      scroll-margin-top: 160px;
     }
 
     .card-head {
@@ -150,14 +129,6 @@
       font-weight: 800;
       font-size: 14px;
       margin-bottom: 12px;
-    }
-
-    .title-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      flex-wrap: wrap;
     }
 
     .title-wrap h2 {
@@ -202,12 +173,11 @@
       gap: 12px;
     }
 
-    .box {
+    .box, .long {
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 14px;
       background: #fff;
-      min-height: 100%;
     }
 
     .label {
@@ -219,32 +189,15 @@
       color: var(--accent);
     }
 
-    .box p, .box ul {
+    .box p, .box ul, .long p {
       margin: 0;
       color: var(--ink);
       line-height: 1.5;
       font-size: 15px;
     }
 
-    .box ul {
-      padding-left: 18px;
-    }
-
+    .box ul { padding-left: 18px; }
     .box li + li { margin-top: 6px; }
-
-    .long {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    .foot {
-      margin-top: 8px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
 
     .callout {
       padding: 14px;
@@ -254,6 +207,7 @@
       color: #4f1d21;
       line-height: 1.5;
       font-size: 14px;
+      margin-top: 20px;
     }
 
     @media (max-width: 720px) {
@@ -261,45 +215,40 @@
       .hero { border-radius: 16px; padding: 14px; }
       .grid { grid-template-columns: 1fr; }
       .card-head, .card-body { padding: 14px; }
-      .card { scroll-margin-top: 240px; }
-      .jump { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { scroll-margin-top: 170px; }
+      .sub { font-size: 13px; }
     }
   </style>
 </head>
 <body>
   <main class="app">
     <section class="hero">
-      <div class="hero-top">
-        <div>
-          <div class="eyebrow">Don Ciccio & Figli</div>
-          <h1>Tasting Smart Cards</h1>
-          <p class="sub">Vertical scroll layout for live tasting support. Ordered to match your lineup. Each card gives the quick story: category, palate anchor, core notes, usage, likely substitutions, and simple audience-facing language.</p>
-        </div>
-      </div>
-      <div class="legend">
-        <div class="pill">17 pours</div>
-        <div class="pill">Service order locked</div>
-        <div class="pill">Built for live reference</div>
-        <div class="pill">Use cues + substitution cues</div>
-      </div>
-      <div class="jump">
-        <a href="#card-1">1. Ambrosia</a>
-        <a href="#card-2">2. Amaro delle Sirene</a>
-        <a href="#card-3">3. Donna Rosa Rabarbaro</a>
-        <a href="#card-4">4. Karkadé</a>
-        <a href="#card-5">5. Cerasum</a>
-        <a href="#card-6">6. Carciofo</a>
-        <a href="#card-7">7. Luna</a>
-        <a href="#card-8">8. Ferro-Kina</a>
-        <a href="#card-9">9. Cinque Bianco</a>
-        <a href="#card-10">10. Amaro Don Fernet</a>
-        <a href="#card-11">11. Limoncello</a>
-        <a href="#card-12">12. Mandarinetto</a>
-        <a href="#card-13">13. Fico d'India</a>
-        <a href="#card-14">14. Finocchietto</a>
-        <a href="#card-15">15. Nocino</a>
-        <a href="#card-16">16. Cioccolato</a>
-        <a href="#card-17">17. Concerto</a>
+      <div class="eyebrow">Don Ciccio & Figli</div>
+      <h1>Tasting Smart Cards</h1>
+      <p class="sub">Ordered to match your tasting lineup. Use the jump menu when you need to move fast, then scroll the cards naturally during service.</p>
+
+      <div class="quick-nav">
+        <label for="jumpSelect">Jump to product</label>
+        <select id="jumpSelect">
+          <option value="">Select a product…</option>
+          <option value="card-1">1. Ambrosia</option>
+          <option value="card-2">2. Amaro delle Sirene</option>
+          <option value="card-3">3. Donna Rosa Rabarbaro</option>
+          <option value="card-4">4. Karkadé</option>
+          <option value="card-5">5. Cerasum</option>
+          <option value="card-6">6. Carciofo</option>
+          <option value="card-7">7. Luna</option>
+          <option value="card-8">8. Ferro-Kina</option>
+          <option value="card-9">9. Cinque Bianco</option>
+          <option value="card-10">10. Amaro Don Fernet</option>
+          <option value="card-11">11. Limoncello</option>
+          <option value="card-12">12. Mandarinetto</option>
+          <option value="card-13">13. Fico d'India</option>
+          <option value="card-14">14. Finocchietto</option>
+          <option value="card-15">15. Nocino</option>
+          <option value="card-16">16. Cioccolato</option>
+          <option value="card-17">17. Concerto</option>
+        </select>
       </div>
     </section>
 
@@ -307,16 +256,10 @@
       <article class="card" id="card-1">
         <div class="card-head">
           <div class="order">1</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Ambrosia</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1908</span>
-                <span>Opener</span>
-              </div>
-              <div class="anchor">Anchor: turmeric citrus spritz</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Ambrosia</h2>
+            <div class="meta"><span>Aperitivo</span><span>1908</span><span>Opener</span></div>
+            <div class="anchor">Anchor: turmeric citrus spritz</div>
           </div>
         </div>
         <div class="card-body">
@@ -333,16 +276,10 @@
       <article class="card" id="card-2">
         <div class="card-head">
           <div class="order">2</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Amaro delle Sirene</h2>
-              <div class="meta">
-                <span>Amaro</span>
-                <span>1931</span>
-                <span>Barrel-aged</span>
-              </div>
-              <div class="anchor">Anchor: oak-aged herbal depth</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Amaro delle Sirene</h2>
+            <div class="meta"><span>Amaro</span><span>1931</span><span>Barrel-aged</span></div>
+            <div class="anchor">Anchor: oak-aged herbal depth</div>
           </div>
         </div>
         <div class="card-body">
@@ -359,16 +296,10 @@
       <article class="card" id="card-3">
         <div class="card-head">
           <div class="order">3</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Donna Rosa Rabarbaro</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1896</span>
-                <span>Floral</span>
-              </div>
-              <div class="anchor">Anchor: elegant rhubarb rose</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Donna Rosa Rabarbaro</h2>
+            <div class="meta"><span>Aperitivo</span><span>1896</span><span>Floral</span></div>
+            <div class="anchor">Anchor: elegant rhubarb rose</div>
           </div>
         </div>
         <div class="card-body">
@@ -385,16 +316,10 @@
       <article class="card" id="card-4">
         <div class="card-head">
           <div class="order">4</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Karkadé</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1899</span>
-                <span>Hibiscus-led</span>
-              </div>
-              <div class="anchor">Anchor: hibiscus tea with bite</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Karkadé</h2>
+            <div class="meta"><span>Aperitivo</span><span>1899</span><span>Hibiscus-led</span></div>
+            <div class="anchor">Anchor: hibiscus tea with bite</div>
           </div>
         </div>
         <div class="card-body">
@@ -411,16 +336,10 @@
       <article class="card" id="card-5">
         <div class="card-head">
           <div class="order">5</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Cerasum</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1906</span>
-                <span>Cherry-led</span>
-              </div>
-              <div class="anchor">Anchor: tart cherry amaro</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Cerasum</h2>
+            <div class="meta"><span>Aperitivo</span><span>1906</span><span>Cherry-led</span></div>
+            <div class="anchor">Anchor: tart cherry amaro</div>
           </div>
         </div>
         <div class="card-body">
@@ -437,16 +356,10 @@
       <article class="card" id="card-6">
         <div class="card-head">
           <div class="order">6</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Carciofo</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1911</span>
-                <span>Savory</span>
-              </div>
-              <div class="anchor">Anchor: savory artichoke Negroni</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Carciofo</h2>
+            <div class="meta"><span>Aperitivo</span><span>1911</span><span>Savory</span></div>
+            <div class="anchor">Anchor: savory artichoke Negroni</div>
           </div>
         </div>
         <div class="card-body">
@@ -463,16 +376,10 @@
       <article class="card" id="card-7">
         <div class="card-head">
           <div class="order">7</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Luna</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1894</span>
-                <span>Bitter-forward</span>
-              </div>
-              <div class="anchor">Anchor: dark red Negroni engine</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Luna</h2>
+            <div class="meta"><span>Aperitivo</span><span>1894</span><span>Bitter-forward</span></div>
+            <div class="anchor">Anchor: dark red Negroni engine</div>
           </div>
         </div>
         <div class="card-body">
@@ -489,16 +396,10 @@
       <article class="card" id="card-8">
         <div class="card-head">
           <div class="order">8</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Amaro Tonico Ferro-Kina</h2>
-              <div class="meta">
-                <span>Amaro</span>
-                <span>1967</span>
-                <span>Quinine / Tonico</span>
-              </div>
-              <div class="anchor">Anchor: iron-toned quinine</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Amaro Tonico Ferro-Kina</h2>
+            <div class="meta"><span>Amaro</span><span>1967</span><span>Quinine / Tonico</span></div>
+            <div class="anchor">Anchor: iron-toned quinine</div>
           </div>
         </div>
         <div class="card-body">
@@ -515,16 +416,10 @@
       <article class="card" id="card-9">
         <div class="card-head">
           <div class="order">9</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Cinque Bianco</h2>
-              <div class="meta">
-                <span>Aperitivo</span>
-                <span>1929</span>
-                <span>Vegan friendly</span>
-              </div>
-              <div class="anchor">Anchor: bitter orange + gentian</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Cinque Bianco</h2>
+            <div class="meta"><span>Aperitivo</span><span>1929</span><span>Vegan friendly</span></div>
+            <div class="anchor">Anchor: bitter orange + gentian</div>
           </div>
         </div>
         <div class="card-body">
@@ -541,16 +436,10 @@
       <article class="card" id="card-10">
         <div class="card-head">
           <div class="order">10</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Amaro Don Fernet</h2>
-              <div class="meta">
-                <span>Amaro</span>
-                <span>1915</span>
-                <span>Fernet style</span>
-              </div>
-              <div class="anchor">Anchor: mint + dark chocolate punch</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Amaro Don Fernet</h2>
+            <div class="meta"><span>Amaro</span><span>1915</span><span>Fernet style</span></div>
+            <div class="anchor">Anchor: mint + dark chocolate punch</div>
           </div>
         </div>
         <div class="card-body">
@@ -567,16 +456,10 @@
       <article class="card" id="card-11">
         <div class="card-head">
           <div class="order">11</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Limoncello</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1947</span>
-                <span>Citrus</span>
-              </div>
-              <div class="anchor">Anchor: Amalfi lemon oil</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Limoncello</h2>
+            <div class="meta"><span>Liqueur</span><span>1947</span><span>Citrus</span></div>
+            <div class="anchor">Anchor: Amalfi lemon oil</div>
           </div>
         </div>
         <div class="card-body">
@@ -593,16 +476,10 @@
       <article class="card" id="card-12">
         <div class="card-head">
           <div class="order">12</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Mandarinetto</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1948</span>
-                <span>Citrus</span>
-              </div>
-              <div class="anchor">Anchor: fresh mandarin peel snap</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Mandarinetto</h2>
+            <div class="meta"><span>Liqueur</span><span>1948</span><span>Citrus</span></div>
+            <div class="anchor">Anchor: fresh mandarin peel snap</div>
           </div>
         </div>
         <div class="card-body">
@@ -619,16 +496,10 @@
       <article class="card" id="card-13">
         <div class="card-head">
           <div class="order">13</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Fico d'India</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1954</span>
-                <span>Fruit</span>
-              </div>
-              <div class="anchor">Anchor: honeyed prickly pear</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Fico d'India</h2>
+            <div class="meta"><span>Liqueur</span><span>1954</span><span>Fruit</span></div>
+            <div class="anchor">Anchor: honeyed prickly pear</div>
           </div>
         </div>
         <div class="card-body">
@@ -645,16 +516,10 @@
       <article class="card" id="card-14">
         <div class="card-head">
           <div class="order">14</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Finocchietto</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1954</span>
-                <span>Digestif</span>
-              </div>
-              <div class="anchor">Anchor: fresh fennel field</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Finocchietto</h2>
+            <div class="meta"><span>Liqueur</span><span>1954</span><span>Digestif</span></div>
+            <div class="anchor">Anchor: fresh fennel field</div>
           </div>
         </div>
         <div class="card-body">
@@ -671,16 +536,10 @@
       <article class="card" id="card-15">
         <div class="card-head">
           <div class="order">15</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Nocino</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1933</span>
-                <span>Walnut digestif</span>
-              </div>
-              <div class="anchor">Anchor: green walnut spice cabinet</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Nocino</h2>
+            <div class="meta"><span>Liqueur</span><span>1933</span><span>Walnut digestif</span></div>
+            <div class="anchor">Anchor: green walnut spice cabinet</div>
           </div>
         </div>
         <div class="card-body">
@@ -697,16 +556,10 @@
       <article class="card" id="card-16">
         <div class="card-head">
           <div class="order">16</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Cioccolato</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1971</span>
-                <span>Cocoa</span>
-              </div>
-              <div class="anchor">Anchor: bittersweet chocolate orange</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Cioccolato</h2>
+            <div class="meta"><span>Liqueur</span><span>1971</span><span>Cocoa</span></div>
+            <div class="anchor">Anchor: bittersweet chocolate orange</div>
           </div>
         </div>
         <div class="card-body">
@@ -723,16 +576,10 @@
       <article class="card" id="card-17">
         <div class="card-head">
           <div class="order">17</div>
-          <div class="title-row">
-            <div class="title-wrap">
-              <h2>Concerto</h2>
-              <div class="meta">
-                <span>Liqueur</span>
-                <span>1696</span>
-                <span>Coffee / herbal</span>
-              </div>
-              <div class="anchor">Anchor: monastery mocha</div>
-            </div>
+          <div class="title-wrap">
+            <h2>Concerto</h2>
+            <div class="meta"><span>Liqueur</span><span>1696</span><span>Coffee / herbal</span></div>
+            <div class="anchor">Anchor: monastery mocha</div>
           </div>
         </div>
         <div class="card-body">
@@ -747,9 +594,18 @@
       </article>
     </section>
 
-    <div class="callout" style="margin-top: 20px;">
-      Best live-use move: keep each card tight while speaking. Hit category, anchor, two notes, one use case, then move on. Do not dump the full paragraph unless the room asks for history.
-    </div>
+    <div class="callout">Best live-use move: hit category, anchor, two notes, one use case, then move. Keep the long story in reserve unless the room wants it.</div>
   </main>
+
+  <script>
+    const jumpSelect = document.getElementById('jumpSelect');
+    jumpSelect.addEventListener('change', function () {
+      if (!this.value) return;
+      const target = document.getElementById(this.value);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  </script>
 </body>
 </html>
