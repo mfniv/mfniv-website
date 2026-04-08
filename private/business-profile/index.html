@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Business Profile | Private</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f17;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: rgba(59, 130, 246, 0.25);
+      --accent: #60a5fa;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 50%), var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      border: 1px solid rgba(96, 165, 250, 0.55);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .assets {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(156, 163, 175, 0.2);
+      display: grid;
+      gap: 12px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">Private share page</div>
+    <h1>Business Profile</h1>
+    <p>
+      This page is intended for private sharing with prospective employers and partners.
+      Replace the placeholder assets below with your current company profile materials.
+    </p>
+
+    <section class="assets">
+      <a href="./company-overview.pdf">Company overview (PDF)</a>
+      <a href="./business-contact.vcf">Business contact card (.VCF)</a>
+    </section>
+  </main>
+</body>
+</html>
